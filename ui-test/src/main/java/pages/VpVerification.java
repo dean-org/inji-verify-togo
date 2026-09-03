@@ -26,7 +26,7 @@ public class VpVerification extends BasePage {
 	@FindBy(id = "selection-panel-back-button")
 	WebElement vpGoBack;
 
-	@FindBy(xpath = "//div[contains(@class, 'bg-default_theme-gradient')]/span[text()='✓']")
+	@FindBy(xpath = "//div[contains(@class, 'bg-purple_theme-gradient')]/span[text()='✓']")
 	WebElement mosipVC;
 
 	@FindBy(xpath = "//label[@for='Health Insurance']//input[@type='checkbox']")
@@ -53,7 +53,7 @@ public class VpVerification extends BasePage {
 	@FindBy(xpath = "//h1[contains(@class,'text-selectorPanelTitle') and contains(text(),'Verifiable Credential Selection Panel')]")
 	WebElement verifiableCredentialPanel;
 
-	@FindBy(xpath = "(//div[contains(@class,'bg-default_theme-gradient') and contains(@class,'rounded-full')]/div[text()='2'])")
+	@FindBy(xpath = "(//div[contains(@class,'bg-purple_theme-gradient') and contains(@class,'rounded-full')]/div[text()='2'])")
 	WebElement VPverificationstep3LabelAfter;
 
 	@FindBy(xpath = "//span[contains(@class, 'text-smallTextSize') and contains(text(), 'MOSIP ID')]")

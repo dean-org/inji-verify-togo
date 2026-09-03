@@ -41,7 +41,7 @@ public class ScanQRCodePage extends BasePage {
 	@FindBy(xpath = "//div[@id='view-result-description']")
 	WebElement ScanQRCodeStep4Description;
 
-	@FindBy(xpath = "//div[@class='grid bg-default_theme-lighter-gradient rounded-[12px] w-[250px] lg:w-[320px] aspect-square content-center justify-center']")
+	@FindBy(xpath = "//div[@class='grid bg-purple_theme-lighter-gradient rounded-[12px] w-[250px] lg:w-[320px] aspect-square content-center justify-center']")
 	WebElement ScanQRCodeArea;
 
 	@FindBy(xpath = "//*[name()='svg' and @width='24' and @height='22']")
