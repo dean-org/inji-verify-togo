@@ -1,10 +1,10 @@
 import React from "react";
 import { useVerificationFlowSelector } from "../../../redux/features/verification/verification.selector";
 import { useAppDispatch } from "../../../redux/hooks";
-import { goToHomeScreen, qrReadInit } from "../../../../redux/features/verification/verification.slice";
+import { goToHomeScreen, qrReadInit } from "../../../redux/features/verification/verification.slice";
 import { useTranslation } from "react-i18next";
-import { Button } from "../commons/Button";
-import { AnyVc } from "../../../../types/data-types";
+import { Button } from "../../Home/VerificationSection/commons/Button";
+import { AnyVc } from "../../../types/data-types";
 
 interface ResultModalProps {
   isOpen: boolean;
@@ -17,7 +17,7 @@ const ResultModal = ({
 }: ResultModalProps) => {
   const { vc, vcStatus } = useVerificationFlowSelector((state) => state.verificationResult ?? { vc: null, vcStatus: null });
   const { method } = useVerificationFlowSelector((state) => ({ method: state.method }));
-  const [claims, setClaims] = React.useState<AnyVc | null>(null);
+  const [claims, setClaims] = React.useState<(AnyVc | { raw: string }) | null>(null);
   const [credentialType, setCredentialType] = React.useState<string>("");
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -102,16 +102,14 @@ const ResultModal = ({
         
         <div className="mb-6">
           <div className="flex items-center">
-            <div className={`flex-shrink-0 h-12 w-12 rounded-lg ${vcStatus === "SUCCESS" 
-              ? "bg-green-100 text-green-600" 
-              : vcStatus === "EXPIRED" 
-                ? "bg-yellow-100 text-yellow-600" 
-                : "bg-red-100 text-red-600`}"}>
-              {vcStatus === "SUCCESS" 
-                ? "✓" 
-                : vcStatus === "EXPIRED" 
-                  ? "⚠" 
-                  : "✗"}
+            <div className={`
+              ${vcStatus === "SUCCESS" ? "bg-green-100 text-green-600"
+              : vcStatus === "EXPIRED" ? "bg-yellow-100 text-yellow-600"
+              : "bg-red-100 text-red-600"}
+            `}>
+            {vcStatus === "SUCCESS" ? "✓"
+                : vcStatus === "EXPIRED" ? "⚠"
+                : "✗"}
             </div>
             <div className="ml-4">
               <p className="font-semibold text-[#0A2540]">
@@ -132,7 +130,7 @@ const ResultModal = ({
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-[#0A2540] mb-4">
               Credential Details
-            </div>
+            </h3>
             <div className="space-y-2 text-sm">
               {/* Display key credential information */}
               {claims && typeof claims === 'object' && !(claims as any).raw && Object.keys(claims).length > 0 ? (
@@ -164,7 +162,7 @@ const ResultModal = ({
             className="w-full"
           >
             Verify Another Credential
-          </button>
+          </Button>
         </div>
       </div>
     </div>

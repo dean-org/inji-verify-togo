@@ -1,6 +1,6 @@
 import React from "react";
 import VerificationSection from "../components/Home/VerificationSection";
-import { Header } from "../components/Home/Header";
+import Header from "../components/Home/Header";
 
 function Home() {
   return (
