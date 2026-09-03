@@ -63,9 +63,9 @@ const MobileDropDownMenu = ({ showMenu, setShowMenu }: { showMenu: boolean; setS
                     <Link id="home-button" to={Pages.Home} className="block px-1 py-2 text-sm text-gray-700 hover:bg-gray-100" onClick={() => setShowMenu(false)}>
                         {t("home")}
                     </Link>
-                    <Link id="verify-credentials-button" to={Pages.VerifyCredentials }
-                          className={`block px-1 py-2 font-bold text-sm bg-${window._env_.DEFAULT_THEME}-gradient bg-clip-text text-transparent`}
-                          onClick={() => setShowMenu(false)}>
+                    <Link id="verify-credentials-button" to={Pages.VerifyCredentials}
+                        className="block px-1 py-2 font-bold text-sm text-black"
+                        onClick={() => setShowMenu(false)}>
                         {t('verifyCredentials')}
                     </Link>
                     <div className="relative">
@@ -119,11 +119,11 @@ const DesktopMenu = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link id="verify-credentials-button"
-                          to={Pages.VerifyCredentials}
-                          className={`block py-2 font-bold rounded bg-${window._env_.DEFAULT_THEME}-gradient bg-clip-text text-transparent`}>
-                        {t("verifyCredentials")}
-                    </Link>
+                   <Link id="verify-credentials-button"
+                    to={Pages.VerifyCredentials}
+                    className="block py-2 font-bold rounded text-black">
+                    {t("verifyCredentials")}
+                </Link>
                 </li>
                 <li className="relative" ref={helpRef}>
                     <button id="help-button"
