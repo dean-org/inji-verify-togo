@@ -1,39 +1,29 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useAppDispatch } from "../../../../redux/hooks";
+import { raiseAlert } from "../../../../redux/features/alerts/alerts.slice";
 import { Button } from "../commons/Button";
 import { VerificationSuccessIcon, VerificationFailedIcon } from "../../../../utils/theme-utils";
 import { getDetailsOrder } from "../../../../utils/commonUtils";
-import { AnyVc, LdpVc, SdJwtVc } from "../../../../types/data-types";
+import { AnyVc, LdpVc, SdJwtVc, VcStatus } from "../../../../types/data-types";
 import VcDetailsGrid from "./VcDetailsGrid";
-import { useVerificationFlowSelector } from "../../../../redux/features/verification/verification.selector";
-import {
-  goToHomeScreen,
-  qrReadInit,
-} from "../../../../redux/features/verification/verification.slice";
-import { raiseAlert } from "../../../../redux/features/alerts/alerts.slice";
-import { DisplayTimeout } from "../../../../utils/config";
 import { decodeSdJwtToken } from "../../../../utils/decodeSdJwt";
 import { extractMappedClaim, isCWT, uint8ArrayToHex } from "../../../../utils/cborUtils";
 
-const Result = () => {
-  const { vc, vcStatus } = useVerificationFlowSelector((state) => state.verificationResult ?? { vc: null, vcStatus: null });
-  const { method } = useVerificationFlowSelector((state) => ({ method: state.method }));
+interface ResultProps {
+  vc: AnyVc | null;
+  vcStatus: VcStatus | null;
+  onVerifyAnother: () => void;
+}
+
+const Result = ({ vc, vcStatus, onVerifyAnother }: ResultProps) => {
   const [claims, setClaims] = useState<AnyVc | null>(null);
   const [credentialType, setCredentialType] = useState<string>("");
   const { t, i18n } = useTranslation();
   const dispatch = useAppDispatch();
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
-  
+
   const handleVerifyAnotherQrCode = () => {
-    if (method === "SCAN") {
-      dispatch(qrReadInit({ method: "SCAN" }));
-    } else {
-      dispatch(goToHomeScreen({}));
-      setTimeout(() => {
-        document.getElementById("upload-qr")?.click();
-      }, 50);
-    }
+    onVerifyAnother();
   };
 
   useEffect(() => {
@@ -46,12 +36,15 @@ const Result = () => {
     const fetchDecodedClaims = async () => {
       if (isCWT(vc)) {
         try {
-          const cwtHex =
-            vc instanceof Uint8Array
-              ? uint8ArrayToHex(vc)
-              : vc instanceof ArrayBuffer
-                ? uint8ArrayToHex(new Uint8Array(vc))
-                : (vc as string);
+          let cwtHex: string;
+          if (vc instanceof Uint8Array) {
+            cwtHex = uint8ArrayToHex(vc);
+          } else if (vc instanceof ArrayBuffer) {
+            cwtHex = uint8ArrayToHex(new Uint8Array(vc));
+          } else {
+            // This should not happen with isCWT, but just in case
+            cwtHex = String(vc);
+          }
           const claims = extractMappedClaim(cwtHex, 169);
           setClaims(claims as LdpVc);
 
@@ -69,37 +62,20 @@ const Result = () => {
           dispatch(raiseAlert({ message, type: "error" }));
         }
       } else {
+        // Handle as LdpVc (only LdpVc has type property)
         setClaims(vc as LdpVc);
-        const typeEntry = vc.type[1];
-        if (typeof typeEntry === "string") {
-          setCredentialType(typeEntry);
-        } else if (typeof typeEntry === "object" && "_value" in typeEntry) {
-          setCredentialType(typeEntry._value);
+        if (vc && (vc as LdpVc).type && Array.isArray((vc as LdpVc).type) && (vc as LdpVc).type[1]) {
+          const typeEntry = (vc as LdpVc).type[1];
+          if (typeof typeEntry === "string") {
+            setCredentialType(typeEntry);
+          } else if (typeof typeEntry === "object" && typeEntry !== null && '_value' in typeEntry) {
+            setCredentialType((typeEntry as { _value: string })._value);
+          }
         }
       }
     };
     fetchDecodedClaims();
-  }, [dispatch, vc]);
-
-  const clearTimer = () => {
-    if (timerRef.current) {
-      clearTimeout(timerRef.current);
-      timerRef.current = null;
-    }
-  };
-
-  useEffect(() => {
-    clearTimer();
-    timerRef.current = setTimeout(() => {
-       dispatch(goToHomeScreen({}));
-    }, DisplayTimeout);
-
-    return () => clearTimer();
-  }, [dispatch]);
-
-  if (!vc) {
-    return null;
-  }
+  }, [vc, dispatch]);
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
@@ -118,7 +94,7 @@ const Result = () => {
               <VerificationFailedIcon className="h-[60px] w-[60px]" />
               <div>
                 <p className="text-2xl font-bold text-[#0A2540]">
-                  {vcStatus === "EXPIRED" ? "Credential Expired" : "Verification Failed"}
+                  {!vcStatus ? "Verification Failed" : vcStatus === "EXPIRED" ? "Credential Expired" : "Verification Failed"}
                 </p>
                 {credentialType && <p className="text-lg text-gray-600">{credentialType}</p>}
               </div>

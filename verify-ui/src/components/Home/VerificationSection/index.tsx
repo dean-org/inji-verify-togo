@@ -1,32 +1,19 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { ScanQrCode } from "./ScanQrCode";
 import { Upload } from "../../../pages/Upload";
-import { ResultModal } from "../ResultModal";
 import { useVerificationFlowSelector } from "../../../redux/features/verification/verification.selector";
 import { useAppDispatch } from "../../../redux/hooks";
 import { goToHomeScreen, qrReadInit } from "../../../redux/features/verification/verification.slice";
+import Result from "./Result";
 
 const VerificationSection = () => {
   const { method, verificationResult } = useVerificationFlowSelector(state => ({
     method: state.method,
     verificationResult: state.verificationResult
   }));
-  const [isResultModalOpen, setIsResultModalOpen] = React.useState(false);
   const dispatch = useAppDispatch();
 
-  // Open modal when verification result is available
-  useEffect(() => {
-    if (verificationResult?.vc) {
-      setIsResultModalOpen(true);
-    } else {
-      setIsResultModalOpen(false);
-    }
-  }, [verificationResult]);
-
-  // Handle closing the modal
-  const handleModalClose = () => {
-    setIsResultModalOpen(false);
-    // Reset state to allow another verification
+  const handleVerifyAnother = () => {
     if (method === "SCAN") {
       dispatch(qrReadInit({ method: "SCAN" }));
     } else {
@@ -38,19 +25,24 @@ const VerificationSection = () => {
     }
   };
 
-  // Always show the scan/upload options based on method
+  // If we have a verification result, show the result component
+  if (verificationResult?.vc) {
+    return (
+      <Result
+        vc={verificationResult.vc}
+        vcStatus={verificationResult.vcStatus}
+        onVerifyAnother={handleVerifyAnother}
+      />
+    );
+  }
+
+  // Otherwise, show the scan/upload component
   const actionComponent = method === "SCAN" ? <ScanQrCode /> : <Upload />;
 
   return (
-    <>
-      <div className="space-y-6">
-        {actionComponent}
-      </div>
-      <ResultModal 
-        isOpen={isResultModalOpen} 
-        onClose={handleModalClose}
-      />
-    </>
+    <div className="space-y-6">
+      {actionComponent}
+    </div>
   );
 };
 
