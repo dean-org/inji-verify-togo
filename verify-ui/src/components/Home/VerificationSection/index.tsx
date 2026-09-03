@@ -3,8 +3,9 @@ import { ScanQrCode } from "./ScanQrCode";
 import { Upload } from "../../../pages/Upload";
 import { useVerificationFlowSelector } from "../../../redux/features/verification/verification.selector";
 import { useAppDispatch } from "../../../redux/hooks";
+import { useNavigate } from "react-router-dom";
 import { goToHomeScreen, qrReadInit } from "../../../redux/features/verification/verification.slice";
-import Result from "./Result";
+import TemporaryStatus from "./TemporaryStatus";
 
 const VerificationSection = () => {
   const { method, verificationResult } = useVerificationFlowSelector(state => ({
@@ -12,6 +13,7 @@ const VerificationSection = () => {
     verificationResult: state.verificationResult
   }));
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleVerifyAnother = () => {
     if (method === "SCAN") {
@@ -25,11 +27,10 @@ const VerificationSection = () => {
     }
   };
 
-  // If we have a verification result, show the result component
+  // If we have a verification result, show temporary status for 2.5 seconds then navigate to result page
   if (verificationResult?.vc) {
     return (
-      <Result
-        vc={verificationResult.vc}
+      <TemporaryStatus
         vcStatus={verificationResult.vcStatus}
         onVerifyAnother={handleVerifyAnother}
       />
