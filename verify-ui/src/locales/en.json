@@ -10,7 +10,7 @@
   "Header": {
     "heading": "Verify credentials ",
     "headingHighlight": "with ease!",
-    "description": "Effortlessly verify credentials with Inji Verify! Just scan the QR code or upload it for instant validation, following the steps below."
+    "description": "Effortlessly verify credentials with Apex Bank! Just scan the QR code or upload it for instant validation, following the steps below."
   },
   "Tab": {
     "upload": "Upload QR Code",
@@ -153,7 +153,7 @@
     "invalidParams": "Invalid Parameters!!"
   },
   "CopyRight": {
-    "content": "2024 © MOSIP - All rights reserved."
+    "content": "2024 © Apex Bank - All rights reserved."
   },
   "CameraAccessDenied": {
     "header": "Camera Access Denied",
