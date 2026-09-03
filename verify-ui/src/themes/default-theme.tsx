@@ -1,35 +1,35 @@
-import { ReactComponent as GradientScanFillIcon } from "../assets/defaultTheme/gradient-scan-icon.svg";
-import { ReactComponent as WhiteScanFillIcon } from "../assets/defaultTheme/white-scan-icon.svg";
-import { ReactComponent as GradientTabUploadIcon } from "../assets/defaultTheme/gradient-upload-icon.svg";
-import { ReactComponent as WhiteTabUploadIcon } from "../assets/defaultTheme/white-upload-icon.svg";
-import { ReactComponent as QrCodeIcon } from "../assets/defaultTheme/qr-code-icon.svg";
-import { ReactComponent as CameraDeniedIcon } from "../assets/defaultTheme/camera-access-denied-icon.svg";
-import { ReactComponent as DocumentFileIcon } from "../assets/defaultTheme/document.svg";
-import { ReactComponent as VerificationSuccess } from "../assets/defaultTheme/verification-success-icon.svg";
-import { ReactComponent as VerificationFailed } from "../assets/defaultTheme/verification-failed-icon.svg";
-import { ReactComponent as GlobeSvgIcon } from "../assets/defaultTheme/globe.svg";
-import { ReactComponent as ArrowDownSvgIcon } from "../assets/defaultTheme/arrow-down.svg";
-import { ReactComponent as ArrowUpSvgIcon } from "../assets/defaultTheme/arrow-up.svg";
-import { ReactComponent as CheckSvgIcon } from "../assets/defaultTheme/check.svg";
-import { ReactComponent as UnderConstructionLogo } from "../assets/defaultTheme/under-construction.svg";
-import { ReactComponent as Search } from "../assets/defaultTheme/search.svg";
-import { ReactComponent as FilterLines } from "../assets/defaultTheme/filter-lines.svg";
-import { ReactComponent as Download } from "../assets/defaultTheme/download.svg";
-import { ReactComponent as WhiteDownload } from "../assets/defaultTheme/white-download.svg";
-import { ReactComponent as ReGenerate } from "../assets/defaultTheme/re-generate.svg";
-import { ReactComponent as WhiteReGenerate } from "../assets/defaultTheme/white-regenerate.svg";
-import { ReactComponent as CrossIcon } from "../assets/defaultTheme/close_icon.svg";
-import { ReactComponent as HamburgerIcon } from "../assets/defaultTheme/hamburger-menu.svg";
-import { ReactComponent as TabIcon } from "../assets/defaultTheme/new-tab.svg";
-import { ReactComponent as VectorDownArrow } from "../assets/defaultTheme/vector-arrow-down.svg";
-import { ReactComponent as VectorUpArrow } from "../assets/defaultTheme/vector-arrow-up.svg";
-import { ReactComponent as VectorExpandIcon } from "../assets/defaultTheme/vector-expand.svg";
-import { ReactComponent as VectorCollapseIcon } from "../assets/defaultTheme/vector-collapse.svg";
-import { ReactComponent as VectorDownloadIcon } from "../assets/defaultTheme/vector-download.svg";
-import { ReactComponent as SharableLinkIcon } from "../assets/defaultTheme/sharable-link.svg";
-import ScannerOutline from "../assets/defaultTheme/scanner-outline.svg";
-import QrOutline from "../assets/defaultTheme/qr-code-outline.svg";
-import VectorOutline from "../assets/defaultTheme/vector-icon-outline.svg";
+import { ReactComponent as GradientScanFillIcon } from "../assets/purpleTheme/gradient-scan-icon.svg";
+import { ReactComponent as WhiteScanFillIcon } from "../assets/purpleTheme/white-scan-icon.svg";
+import { ReactComponent as GradientTabUploadIcon } from "../assets/purpleTheme/gradient-upload-icon.svg";
+import { ReactComponent as WhiteTabUploadIcon } from "../assets/purpleTheme/white-upload-icon.svg";
+import { ReactComponent as QrCodeIcon } from "../assets/purpleTheme/qr-code-icon.svg";
+import { ReactComponent as CameraDeniedIcon } from "../assets/purpleTheme/camera-access-denied-icon.svg";
+import { ReactComponent as DocumentFileIcon } from "../assets/purpleTheme/document.svg";
+import { ReactComponent as VerificationSuccess } from "../assets/purpleTheme/verification-success-icon.svg";
+import { ReactComponent as VerificationFailed } from "../assets/purpleTheme/verification-failed-icon.svg";
+import { ReactComponent as GlobeSvgIcon } from "../assets/purpleTheme/globe.svg";
+import { ReactComponent as ArrowDownSvgIcon } from "../assets/purpleTheme/arrow-down.svg";
+import { ReactComponent as ArrowUpSvgIcon } from "../assets/purpleTheme/arrow-up.svg";
+import { ReactComponent as CheckSvgIcon } from "../assets/purpleTheme/check.svg";
+import { ReactComponent as UnderConstructionLogo } from "../assets/purpleTheme/under-construction.svg";
+import { ReactComponent as Search } from "../assets/purpleTheme/search.svg";
+import { ReactComponent as FilterLines } from "../assets/purpleTheme/filter-lines.svg";
+import { ReactComponent as Download } from "../assets/purpleTheme/download.svg";
+import { ReactComponent as WhiteDownload } from "../assets/purpleTheme/white-download.svg";
+import { ReactComponent as ReGenerate } from "../assets/purpleTheme/re-generate.svg";
+import { ReactComponent as WhiteReGenerate } from "../assets/purpleTheme/white-regenerate.svg";
+import { ReactComponent as CrossIcon } from "../assets/purpleTheme/close_icon.svg";
+import { ReactComponent as HamburgerIcon } from "../assets/purpleTheme/hamburger-menu.svg";
+import { ReactComponent as TabIcon } from "../assets/purpleTheme/new-tab.svg";
+import { ReactComponent as VectorDownArrow } from "../assets/purpleTheme/vector-arrow-down.svg";
+import { ReactComponent as VectorUpArrow } from "../assets/purpleTheme/vector-arrow-up.svg";
+import { ReactComponent as VectorExpandIcon } from "../assets/purpleTheme/vector-expand.svg";
+import { ReactComponent as VectorCollapseIcon } from "../assets/purpleTheme/vector-collapse.svg";
+import { ReactComponent as VectorDownloadIcon } from "../assets/purpleTheme/vector-download.svg";
+import { ReactComponent as SharableLinkIcon } from "../assets/purpleTheme/sharable-link.svg";
+import ScannerOutline from "../assets/purpleTheme/scanner-outline.svg";
+import QrOutline from "../assets/purpleTheme/qr-code-outline.svg";
+import VectorOutline from "../assets/purpleTheme/vector-icon-outline.svg";
 
 // Create simple geometric shapes for bank branding
 const BankLogo = () => (
@@ -54,7 +54,7 @@ const BankTextLogo = () => (
   </svg>
 );
 
-const defaultTheme = {
+const purpleTheme = {
   Logo: BankLogo,
   InjiLogo: BankTextLogo, // Replacing InjiLogo with bank text logo
   QrIcon: QrCodeIcon,
@@ -91,4 +91,4 @@ const defaultTheme = {
   SharableLink: SharableLinkIcon,
 };
 
-export default defaultTheme;
+export default purpleTheme;
