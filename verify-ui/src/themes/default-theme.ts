@@ -1,4 +1,3 @@
-import { ReactComponent as NavLogo } from "../assets/defaultTheme/logo.svg";
 import { ReactComponent as GradientScanFillIcon } from "../assets/defaultTheme/gradient-scan-icon.svg";
 import { ReactComponent as WhiteScanFillIcon } from "../assets/defaultTheme/white-scan-icon.svg";
 import { ReactComponent as GradientTabUploadIcon } from "../assets/defaultTheme/gradient-upload-icon.svg";
@@ -12,7 +11,6 @@ import { ReactComponent as GlobeSvgIcon } from "../assets/defaultTheme/globe.svg
 import { ReactComponent as ArrowDownSvgIcon } from "../assets/defaultTheme/arrow-down.svg";
 import { ReactComponent as ArrowUpSvgIcon } from "../assets/defaultTheme/arrow-up.svg";
 import { ReactComponent as CheckSvgIcon } from "../assets/defaultTheme/check.svg";
-import { ReactComponent as InjiVerLogo } from "../assets/defaultTheme/inji-verify.svg";
 import { ReactComponent as UnderConstructionLogo } from "../assets/defaultTheme/under-construction.svg";
 import { ReactComponent as Search } from "../assets/defaultTheme/search.svg";
 import { ReactComponent as FilterLines } from "../assets/defaultTheme/filter-lines.svg";
@@ -33,9 +31,32 @@ import ScannerOutline from "../assets/defaultTheme/scanner-outline.svg";
 import QrOutline from "../assets/defaultTheme/qr-code-outline.svg";
 import VectorOutline from "../assets/defaultTheme/vector-icon-outline.svg";
 
+// Create simple geometric shapes for bank branding
+const BankLogo = () => (
+  <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+    <rect width="60" height="60" rx="8" fill="var(--iv-primary-color)" />
+    <rect width="40" height="30" x="10" y="15" rx="4" fill="var(--iv-accent-color)" />
+  </svg>
+);
+
+const BankTextLogo = () => (
+  <svg width="180" height="40" viewBox="0 0 180 40" xmlns="http://www.w3.org/2000/svg">
+    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" 
+          font-family="Inter, sans-serif" font-weight="700" font-size="18"
+          fill="var(--iv-primary-color)">
+      Apex Bank
+    </text>
+    <text x="50%" y="70%" dominant-baseline="middle" text-anchor="middle" 
+          font-family="Inter, sans-serif" font-weight="400" font-size="12"
+          fill="var(--iv-header-description-text)">
+      Credential Verification
+    </text>
+  </svg>
+);
+
 const defaultTheme = {
-  Logo: NavLogo,
-  InjiLogo: InjiVerLogo,
+  Logo: BankLogo,
+  InjiLogo: BankTextLogo, // Replacing InjiLogo with bank text logo
   QrIcon: QrCodeIcon,
   GradientScanIcon: GradientScanFillIcon,
   WhiteScanIcon: WhiteScanFillIcon,

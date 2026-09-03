@@ -1,72 +1,43 @@
 import React from "react";
-import VerificationProgressTracker from "../components/Home/VerificationProgressTracker";
-import { VpVerification } from "../components/Home/VerificationSection/VpVerification";
-import SelectionPanel from "../components/Home/VerificationSection/commons/SelectionPanel";
-import { Button } from "../components/Home/VerificationSection/commons/Button";
-import { useTranslation } from "react-i18next";
-import { useVerifyFlowSelector } from "../redux/features/verification/verification.selector";
-import { getVpRequest, resetVpRequest, setSelectCredential } from "../redux/features/verify/vpVerificationState";
-import { useAppDispatch } from "../redux/hooks";
+import VerificationSection from "../components/Home/VerificationSection";
+import { Header } from "../components/Home/Header";
 
-export function Verify() {
-  const { t } = useTranslation("Verify");
-  const openSelection = useVerifyFlowSelector((state) => state.SelectionPanel);
-  const dispatch = useAppDispatch();
-  const unverifiedClaims = useVerifyFlowSelector((state) => state.unVerifiedClaims );
-  const activeScreen = useVerifyFlowSelector((state) => state.activeScreen );
-
-  const handleRequestCredentials = () => {
-    dispatch(setSelectCredential());
-  };
-
-  const HandelGenerateQr = () => {
-    dispatch(getVpRequest({ selectedClaims: unverifiedClaims }));
-  };
-
-  const HandelRestartProcess = () => {
-    dispatch(resetVpRequest());
-  };
-
-  const renderRequestCredentialsButton = () => (
-    <Button
-      id="stepper-request-credentials-button"
-      title={t("rqstButton")}
-      className={`w-[300px] mx-auto lg:ms-[76px] mt-10 hidden lg:block`}
-      variant="fill"
-      onClick={handleRequestCredentials}
-      disabled={activeScreen === 3 }
-    />
-  );
-
-  const renderMissingAndResetButton = () => (
-    <div className="hidden lg:flex items-center justify-around mt-10">
-      <Button
-        id="missing-credentials-button"
-        title={t("missingCredentials")}
-        className={`w-[250px]`}
-        onClick={HandelGenerateQr}
+export const Verify = () => {
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <Header 
+        className="bg-white"
       />
-      <Button
-        id="restart-process-button"
-        title={t("restartProcess")}
-        className={`w-[200px]`}
-        onClick={HandelRestartProcess}
-        variant="outline"
-      />
+      
+      {/* Main Content */}
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        {/* Bank Logo and Title */}
+        <div className="text-center mb-8">
+          <div className="flex items-center justify-center space-x-4 mb-6">
+            <div className="w-16 h-16 bg-gradient-to-r from-[#0A2540] to-[#C9A227] rounded-2xl flex items-center justify-center">
+              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
+                <div className="w-4 h-4 bg-gradient-to-r from-[#0A2540] to-[#C9A227] rounded-full"></div>
+              </div>
+            </div>
+            <div className="text-left">
+              <h1 className="text-2xl font-bold text-[#0A2540]">Apex Bank</h1>
+              <p className="text-sm font-medium text-[#6B7280]">Credential Verification</p>
+            </div>
+          </div>
+          <p className="max-w-xl text-center text-[#6B7280] leading-relaxed">
+            Securely verify digital credentials in seconds
+          </p>
+        </div>
+        
+        {/* Verification Section - will show upload/scan UI based on method set by loader */}
+        <VerificationSection />
+      </div>
+      
+      {/* Footer */}
+      <div className="text-center text-xs text-gray-500 py-6">
+        2024 © Apex Bank - All rights reserved.
+      </div>
     </div>
   );
-
-
-  return (
-      <div className="grid grid-cols-13 gap-y-8 lg:gap-0">
-        <div className="col-start-1 col-end-13 lg:col-end-6 lg:bg-pageBackGroundColor w-full lg:max-w-[50vw] lg:pb-[100px] flex flex-col items-center">
-          <VerificationProgressTracker />
-          {unverifiedClaims.length > 0 ? renderMissingAndResetButton() : renderRequestCredentialsButton() }
-          {openSelection && <SelectionPanel />}
-        </div>
-        <div className="col-start-1 col-end-13 lg:col-start-7 xs:w-[100vw] lg:max-w-[50vw]">
-          <VpVerification />
-        </div>
-      </div>
-  );
-}
+};
