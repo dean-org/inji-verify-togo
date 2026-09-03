@@ -1,5 +1,5 @@
 import React from "react";
-import { convertToId, convertToTitleCase, getDisplayValue } from "../../../../utils/misc";
+import { convertToId, convertToTitleCase, getDisplayValue, getImageSrc } from "../../../../utils/misc";
 import { SharableLink } from "../../../../utils/theme-utils";
 import { AnyVc } from "../../../../types/data-types";
 
@@ -12,21 +12,9 @@ const VcDetailsGrid: React.FC<VcDetailsGridProps> = ({
   orderedDetails,
   vc
 }) => {
-  const BIOMETRIC_KEYS = ["face", "portrait", "signature_usual_mark"].map((key) => key.toLowerCase());
-
-  const biometricItems = orderedDetails.filter((item) =>
-    BIOMETRIC_KEYS.includes(item.key.toLocaleLowerCase())
-  );
-  const otherItems = orderedDetails.filter(
-    (item) => !BIOMETRIC_KEYS.includes(item.key.toLocaleLowerCase())
-  );
-
-  const renderingItems = [...biometricItems, ...otherItems];
-
   return (
     <div className="grid relative lg:grid-cols-12 lg:gap-y-4">
-      {renderingItems.map((label, index) => {
-        const isImage = BIOMETRIC_KEYS.includes(label.key.toLocaleLowerCase());
+      {orderedDetails.map((label, index) => {
         const isEven = index % 2 === 0;
         const normalizeKey = (key: string) => key.toLowerCase().trim();
         const disclosedClaims =
@@ -47,7 +35,8 @@ const VcDetailsGrid: React.FC<VcDetailsGridProps> = ({
             )
           : false;
 
-          const faceData = Array.isArray(label.value) && label.value.length > 0 ? label.value[0] : label.value;
+        const imageSrc = getImageSrc(label.value);
+        const isImage = imageSrc !== null;
 
         return (
           <div
@@ -59,16 +48,21 @@ const VcDetailsGrid: React.FC<VcDetailsGridProps> = ({
             }`}
           >
             {isImage ? (
-              <img
-                src={faceData}
-                alt={label.key}
-                style={{
-                  width: 80,
-                  height: 80,
-                  borderRadius: 10,
-                  marginTop: 10,
-                }}
-              />
+              <div className="flex items-center justify-center">
+                {label.key.toLowerCase().includes('signature') ? (
+                  <img
+                    src={imageSrc}
+                    alt={label.key}
+                    className="max-h-[60px] w-auto object-contain"
+                  />
+                ) : (
+                  <img
+                    src={imageSrc}
+                    alt={label.key}
+                    className="w-[100px] h-[100px] rounded-full border-2 border-gray-200 object-cover"
+                  />
+                )}
+              </div>
             ) : (
               <>
                 <p

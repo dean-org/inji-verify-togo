@@ -127,3 +127,28 @@ export const saveData = async (vc: any) => {
   document.body.removeChild(link);
   URL.revokeObjectURL(href);
 };
+
+export const getImageSrc = (value: any): string | null => {
+  if (typeof value === 'string') {
+    if (value.startsWith('data:image/')) {
+      return value;
+    }
+    // Check if it's a base64 string (without prefix)
+    const base64Regex = /^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$/;
+    if (value.length > 100 && base64Regex.test(value)) {
+      // Assume JPEG
+      return `data:image/jpeg;base64,${value}`;
+    }
+  }
+  if (value instanceof Uint8Array || value instanceof ArrayBuffer) {
+    const bytes = value instanceof Uint8Array ? value : new Uint8Array(value);
+    let binary = '';
+    const len = bytes.byteLength;
+    for (let i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    const base64 = window.btoa(binary);
+    return `data:image/jpeg;base64,${base64}`;
+  }
+  return null;
+};
