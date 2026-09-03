@@ -14,6 +14,7 @@ on:
       - develop
       - MOSIP*
       - release-0.17.x
+      - bank
 
 jobs:
   build-dockers-inji-verify:
