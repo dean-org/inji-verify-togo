@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../redux/hooks";
 import { useVerificationFlowSelector } from "../redux/features/verification/verification.selector";
-import { VcDetailsGrid } from "../components/Home/VerificationSection/Result/VcDetailsGrid";
+import VcDetailsGrid from "../components/Home/VerificationSection/Result/VcDetailsGrid";
 import { getDetailsOrder } from "../utils/commonUtils";
 import { AnyVc, LdpVc, SdJwtVc, VcStatus } from "../types/data-types";
 import { decodeSdJwtToken } from "../utils/decodeSdJwt";

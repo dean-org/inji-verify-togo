@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import { isRTL, LanguagesSupported, switchLanguage } from "../../../utils/i18n";
-import { storeLanguage } from "../../../redux/features/common/commonSlice";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { RootState } from "../../../redux/store";
+import { isRTL, LanguagesSupported, switchLanguage } from "../../utils/i18n";
+import { storeLanguage } from "../../redux/features/common/commonSlice";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { RootState } from "../../redux/store";
 import { renderGradientText } from "../../utils/builder";
 import { ArrowDown, ArrowUp, Check, GlobeIcon } from "../../utils/theme-utils";
 

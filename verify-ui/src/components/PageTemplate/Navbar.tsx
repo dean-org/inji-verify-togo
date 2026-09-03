@@ -2,14 +2,14 @@ import React, {useCallback, useEffect, useState, useRef} from 'react';
 import { Link } from "react-router-dom";
 import { MdArrowForwardIos } from "react-icons/md";
 import { MdExpandLess } from "react-icons/md";
-import {AlertMessages, Pages} from "../../../utils/config";
+import {AlertMessages, Pages} from "../../utils/config";
 import { LanguageSelector } from '../commons/LanguageSelector';
 import { useTranslation } from 'react-i18next';
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import { RootState } from '../../../redux/store';
-import { isRTL } from '../../../utils/i18n';
-import { Logo, MenuIcon, NewTabIcon } from '../../../utils/theme-utils';
-import { raiseAlert } from '../../../redux/features/alerts/alerts.slice';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { RootState } from '../../redux/store';
+import { isRTL } from '../../utils/i18n';
+import { Logo, MenuIcon, NewTabIcon } from '../../utils/theme-utils';
+import { raiseAlert } from '../../redux/features/alerts/alerts.slice';
 
 const SubMenu = () => {
     const {t} = useTranslation("Navbar");

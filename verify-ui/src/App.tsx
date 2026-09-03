@@ -14,7 +14,7 @@ import { isRTL } from "./utils/i18n";
 import { VerificationMethod } from "./types/data-types";
 import { goToHomeScreen } from "./redux/features/verification/verification.slice";
 import { Verify } from "./pages/Verify";
-import { Results } from "./pages/Results";
+import Results from "./pages/Results";
 import PageTemplate from "./components/PageTemplate";
 
 function switchToVerificationMethod(method: VerificationMethod) {

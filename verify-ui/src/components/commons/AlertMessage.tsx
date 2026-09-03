@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
-import {useAppDispatch} from "../../../redux/hooks";
-import {closeAlert} from "../../../redux/features/alerts/alerts.slice";
-import { CloseIcon } from '../../../utils/theme-utils';
-import {useAlertsSelector} from "../../../redux/features/alerts/alerts.selector";
+import {useAppDispatch} from "../../redux/hooks";
+import {closeAlert} from "../../redux/features/alerts/alerts.slice";
+import { CloseIcon } from '../../utils/theme-utils';
+import {useAlertsSelector} from "../../redux/features/alerts/alerts.selector";
 
 const backgroundColorMapping: any = {
     warning: "bg-warningAlert",
