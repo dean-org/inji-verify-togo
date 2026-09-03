@@ -1,6 +1,6 @@
 import React from "react";
 import { useVerificationFlowSelector } from "../../../redux/features/verification/verification.selector";
-import { useAppDispatch } from "../../../redux/hooks";
+import { useAppDispatch } from "../../redux/hooks";
 import { goToHomeScreen, qrReadInit } from "../../../redux/features/verification/verification.slice";
 import { useTranslation } from "react-i18next";
 import { Button } from "../../Home/VerificationSection/commons/Button";

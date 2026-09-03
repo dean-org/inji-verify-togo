@@ -43,10 +43,6 @@ const router = createBrowserRouter([
         loader: () => switchToVerificationMethod("VERIFY"),
       },
       {
-        path: Pages.Results,
-        element: <Results/>,
-      },
-      {
         path: Pages.Offline,
         element: <Offline/>,
       },
@@ -55,6 +51,10 @@ const router = createBrowserRouter([
         element: <PageNotFound404/>,
       },
     ]
+  },
+  {
+    path: Pages.Results,
+    element: <Results/>,
   }
 ]);
 

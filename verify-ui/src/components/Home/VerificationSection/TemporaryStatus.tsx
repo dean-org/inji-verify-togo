@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useAppDispatch } from "../../../redux/hooks";
 import { useNavigate } from "react-router-dom";
 import { goToHomeScreen } from "../../../redux/features/verification/verification.slice";
-import { VerificationSuccessIcon, VerificationFailedIcon } from "../../../../utils/theme-utils";
+import { VerificationSuccessIcon, VerificationFailedIcon } from "../../../utils/theme-utils";
 
 interface TemporaryStatusProps {
   vcStatus: string | null;
@@ -14,13 +14,20 @@ const TemporaryStatus = ({ vcStatus, onVerifyAnother }: TemporaryStatusProps) =>
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Show status for 2.5 seconds, then navigate to result page
     const timer = setTimeout(() => {
       navigate("/result");
     }, 2500);
 
     return () => clearTimeout(timer);
   }, [navigate]);
+
+  const getStatusMessage = () => {
+    if (vcStatus === "SUCCESS") return "Verified";
+    if (vcStatus === "EXPIRED") return "Credential Expired";
+    if (vcStatus === "INVALID") return "Invalid Credential";
+    if (vcStatus === "REVOKED") return "Revoked Credential";
+    return "Verification Failed";
+  };
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
@@ -38,7 +45,7 @@ const TemporaryStatus = ({ vcStatus, onVerifyAnother }: TemporaryStatusProps) =>
               <VerificationFailedIcon className="h-[60px] w-[60px]" />
               <div>
                 <p className="text-2xl font-bold text-[#0A2540]">
-                  {!vcStatus ? "Verification Failed" : vcStatus === "EXPIRED" ? "Credential Expired" : "Verification Failed"}
+                  {getStatusMessage()}
                 </p>
               </div>
             </div>
