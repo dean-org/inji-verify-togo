@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
-import { useAppDispatch } from "../../../../redux/hooks";
-import { useVerificationFlowSelector } from "../../../../redux/features/verification/verification.selector";
-import { goToHomeScreen } from "../../../../redux/features/verification/verification.slice";
+import { useAppDispatch } from "../../../../../redux/hooks";
+import { useVerificationFlowSelector } from "../../../../../redux/features/verification/verification.selector";
+import { goToHomeScreen } from "../../../../../redux/features/verification/verification.slice";
 import { VerificationMethod } from "../../../../types/data-types";
 import { raiseAlert } from "../../../../redux/features/alerts/alerts.slice";
 import { AlertMessages, Pages } from "../../../../utils/config";

@@ -1,10 +1,10 @@
 import React from "react";
 import { useVerificationFlowSelector } from "../../../redux/features/verification/verification.selector";
 import { useAppDispatch } from "../../../redux/hooks";
-import { goToHomeScreen, qrReadInit } from "../../../../redux/features/verification/verification.slice";
+import { goToHomeScreen, qrReadInit } from "../../redux/features/verification/verification.slice";
 import { useTranslation } from "react-i18next";
 import { Button } from "../commons/Button";
-import { AnyVc } from "../../../../types/data-types";
+import { AnyVc } from "../../../types/data-types";
 
 interface ResultModalProps {
   isOpen: boolean;
@@ -102,12 +102,12 @@ const ResultModal = ({
         
         <div className="mb-6">
           <div className="flex items-center">
-            <div className={`flex-shrink-0 h-12 w-12 rounded-lg ${vcStatus === "SUCCESS" 
-              ? "bg-green-100 text-green-600" 
-              : vcStatus === "EXPIRED" 
-                ? "bg-yellow-100 text-yellow-600" 
-                : "bg-red-100 text-red-600`}"}>
-              {vcStatus === "SUCCESS" 
+            <div className={`
+              ${vcStatus === "SUCCESS" ? "bg-green-100 text-green-600"
+              : vcStatus === "EXPIRED" ? "bg-yellow-100 text-yellow-600"
+              : "bg-red-100 text-red-600"}
+            `}>
+            `}>
                 ? "✓" 
                 : vcStatus === "EXPIRED" 
                   ? "⚠" 

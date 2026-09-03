@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import ResultSummary from "./ResultSummary";
-import { useVerificationFlowSelector } from "../../../../redux/features/verification/verification.selector";
+import { useVerificationFlowSelector } from "../../../../../redux/features/verification/verification.selector";
 import DisplayVcDetailsModal from "./DisplayVcDetailsModal";
 import DisplayVcDetailView from "./DisplayVcDetailView";
 import { Button } from "../commons/Button";
@@ -9,7 +9,7 @@ import { useAppDispatch } from "../../../../redux/hooks";
 import {
   goToHomeScreen,
   qrReadInit,
-} from "../../../../redux/features/verification/verification.slice";
+} from "../../../../../redux/features/verification/verification.slice";
 import { decodeSdJwtToken } from "../../../../utils/decodeSdJwt";
 import { AnyVc, LdpVc, SdJwtVc } from "../../../../types/data-types";
 import { DisplayTimeout } from "../../../../utils/config";

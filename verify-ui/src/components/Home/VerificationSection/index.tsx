@@ -4,7 +4,7 @@ import { Upload } from "../../../pages/Upload";
 import { ResultModal } from "../ResultModal";
 import { useVerificationFlowSelector } from "../../../redux/features/verification/verification.selector";
 import { useAppDispatch } from "../../../redux/hooks";
-import { goToHomeScreen, qrReadInit } from "../../../../redux/features/verification/verification.slice";
+import { goToHomeScreen, qrReadInit } from "../../../redux/features/verification/verification.slice";
 
 const VerificationSection = () => {
   const { method, verificationResult } = useVerificationFlowSelector(state => ({
