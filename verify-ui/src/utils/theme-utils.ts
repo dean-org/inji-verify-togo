@@ -1,4 +1,4 @@
-import defaultTheme from "../themes/default-theme.tsx";
+import defaultTheme from "../themes/default-theme";
 import purpleTheme from "../themes/purple-theme";
 import carTheme from "../themes/car-theme";
 
