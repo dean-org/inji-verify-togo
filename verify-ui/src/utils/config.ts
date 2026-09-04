@@ -11,6 +11,7 @@ export const Pages = {
     Home: "/",
     Scan:"/scan",
     VerifyCredentials: "/verify",
+    Results: "/result",
     Offline: "/offline",
     PageNotFound: "*"
 }

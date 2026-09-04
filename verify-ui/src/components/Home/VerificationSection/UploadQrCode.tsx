@@ -36,7 +36,7 @@ export const UploadQrCode = ({
           </span>
           <span
             id="upload-qr-code-button"
-            className={`bg-${window._env_.DEFAULT_THEME}-gradient bg-clip-text text-transparent group-hover:text-white`}
+            className={`bg-${window._env_.DEFAULT_THEME}-gradient bg-clip-text group-hover:text-black`}
           >
             {displayMessage}
           </span>
