@@ -162,8 +162,37 @@ export const getDetailsOrder = (vc: any, currentLanguage: string): { key: string
       );
 
     case "FarmerCredential":
+      // Get the external render order
+      const externalOrder = getVCRenderOrders().farmerCredentialRenderOrder || [];
+
+      // Define all expected fields for FarmerCredential
+      const expectedFields = [
+        "country",
+        "farmingType",
+        "farmSizeUnit",
+        "primaryCrop",
+        "farmerId",
+        "farmSize",
+        "district",
+        "name",
+        "registrationDate",
+        "region",
+        "village",
+        "landOwnershipType",
+        "status"
+      ];
+
+      // Combine external order with any missing expected fields
+      // This preserves the external order while adding missing fields
+      const combinedOrder = [...externalOrder];
+      expectedFields.forEach(field => {
+        if (!combinedOrder.includes(field)) {
+          combinedOrder.push(field);
+        }
+      });
+
       return processFields(
-        getVCRenderOrders().farmerCredentialRenderOrder,
+        combinedOrder,
         credential,
         currentLanguage
       );
